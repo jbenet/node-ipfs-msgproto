@@ -9,6 +9,12 @@ This is a node module to make writing wire protocol stacks on top of streams eas
 
 And this modules takes care of en/decoding, en/decapsulating, etc. BTW, it's recommended to use protobufs or capnp codecs for encoding/decoding to the wire. Though, at the very least, msgproto payloads are protobuf encoded, so you'll get smart wire scanning.
 
+## Install
+
+```
+npm install msgproto
+```
+
 ## Examples
 
 Check out these shim protocols:
