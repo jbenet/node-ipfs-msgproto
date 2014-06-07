@@ -27,5 +27,5 @@ Check out these shim protocols:
 
 And then see this sample protocol:
 
-- [msgproto-example-chat](https://github.com/jbenet/node-msgproto-example-chat)
+- [msgproto-chat-example](https://github.com/jbenet/node-msgproto-chat-example)
 
