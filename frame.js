@@ -1,21 +1,21 @@
 var Message = require('./message')
-var Payload = require('./payload')
 
 module.exports = Frame
 
-// A Frame is a meta Message that carries a Payload Message
+// A Frame is a meta Message that carries a payload (usually a Message)
 // It provides nice helpers for en/decoding and en/decapsulating.
 // (Think of the OSI layer frames: IP, TCP, UDP, Ethernet.)
-function Frame(payload) {
+function Frame(payload, payloadType) {
   if (!(this instanceof Frame))
-    return new Frame(payload)
+    return new Frame(payload, payloadType)
 
   Message.apply(this)
 
-  if (!(this instanceof Buffer) && !(this instanceof Payload))
-    payload = Payload(payload)
+  if (payload instanceof Buffer && !payloadType)
+    throw new Error('Frame: payload buffer and no payload type')
 
   this.payload = payload
+  this.payloadType = payloadType
 }
 
 Message.inherits(Frame, Message)
@@ -29,14 +29,13 @@ Frame.prototype.getEncodedPayload = function() {
   return payload
 }
 
-Frame.prototype.getDecodedPayload = function(payloadTypes) {
+Frame.prototype.getDecodedPayload = function() {
   var payload = this.payload
 
-  if (payload instanceof Buffer)
-    payload = Payload.decode(payload)
+  if (payload instanceof Buffer && this.payloadType != Buffer)
+    payload = this.payloadType.decode(payload)
 
-  // want the payload message itself
-  return payload.getDecodedMessage(payloadTypes)
+  return payload
 }
 
 Frame.prototype.getEncodedData = function() {
@@ -56,8 +55,8 @@ Frame.prototype.validate = function() {
   if (!this.payload)
     return new Error('Frame: no payload')
 
-  if (!(this.payload instanceof Buffer) && !(this.payload instanceof Payload))
-    return new Error('Frame: payload must be Buffer or Payload')
+  if (!(this.payload instanceof Buffer) && !(this.payload instanceof Message))
+    return new Error('Frame: payload must be Buffer or Message')
 
   if (typeof(this.payload.validate) == 'function')
     return this.payload.validate()
