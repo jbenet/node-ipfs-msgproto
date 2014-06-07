@@ -2,6 +2,7 @@
 module.exports = {
   Message: require('./lib/message'),
   Frame: require('./lib/frame'),
-  Protocol: require('./lib/protocol'),
+  WireProtocol: require('./lib/protocol'),
+  ProtoMessage: require('./lib/proto-message'),
   ProtobufCodec: require('./lib/protobuf-codec'),
 }
