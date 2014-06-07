@@ -1,6 +1,6 @@
 {
   "name": "msgproto",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "message protocols",
   "main": "index.js",
   "dependencies": {
