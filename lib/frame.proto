@@ -1,0 +1,5 @@
+// A raw Frame has a bytes buffer payload.
+// Usually, Frame is derived from.
+message Frame {
+  optional bytes payload = 1;
+}
