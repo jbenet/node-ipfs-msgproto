@@ -4,5 +4,5 @@ module.exports = {
   Frame: require('./lib/frame'),
   WireProtocol: require('./lib/protocol'),
   ProtoMessage: require('./lib/proto-message'),
-  ProtobufCodec: require('./lib/protobuf-codec'),
+  ProtobufCodec: require('ipfs-protobuf-codec'),
 }
