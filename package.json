@@ -1,6 +1,6 @@
 {
   "name": "msgproto",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "message protocols",
   "main": "index.js",
   "dependencies": {
@@ -9,6 +9,7 @@
     "inherits": "^2.0.1",
     "ipfs-protobuf-codec": "0.0.3",
     "pipe-segment": "^0.1.1",
+    "readable-stream": "^1.0.27-1",
     "through2": "^0.5.1"
   },
   "devDependencies": {
