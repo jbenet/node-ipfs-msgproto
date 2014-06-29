@@ -12,7 +12,9 @@ function setupStreams(addrs) {
 
   return map(addrs, function (addr) {
     var mds = multiDgrams(addr, addrs)
-    return msgproto.WireProtocol(msgproto.Frame, mds)
+    var seg = msgproto.WireProtocol(msgproto.Frame)
+    seg.buffers.pipe(mds).pipe(seg.buffers)
+    return seg.messages
   })
 }
 
