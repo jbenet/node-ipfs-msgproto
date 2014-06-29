@@ -38,7 +38,7 @@ test('test send', function(t) {
       if (Object.keys(sent).length == 0) { // all done
         map(streams, function(s) {
           s.write(null)
-          s.middle.end() // why doesn't s.end() work!?
+          s.end() // why doesn't s.end() work!?
         })
         t.ok(true, 'should be done')
       }
